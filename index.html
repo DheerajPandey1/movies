@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+           #movies{
+               display:grid;
+               grid-template-columns:repeat(3,1fr);
+               grid-template-rows: repeat(3,200px);
+            
+               gap: 160px;
+               
+    
+           }
+           img{
+               height: 100%;
+               width: 100%;
+               padding-bottom: 5%;
+           }
+           h3{
+               text-align: center;
+           }
+    </style>
+</head>
+<body>
+    <div id="movies"></div>
+</body>
+</html>
+
+<script>
+
+var showmovies=[
+{
+    name:"kabir singh",
+    release:"2019",
+    poster:"data:image/jpeg;base64,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",
+    imdb:"*7/10",
+},
+
+    {
+    name:"P.K",
+    release:"2014",
+    poster:"https://tse2.mm.bing.net/th?id=OIP.Nqo7-vmr-TcoNUUanW5I3gHaEK&pid=Api&P=0&w=275&h=154",
+     imdb:"*8.1/10",
+},
+
+{
+    name:"Sanju",
+    release:"2018",
+    poster:"https://tse3.mm.bing.net/th?id=OIP.Zej-CVaD8C0qXeKnJMp1vQHaJ4&pid=Api&P=0&w=148&h=198",
+     imdb:"*8.0/10",
+},
+
+{
+    name:"Super 30",
+    release:"2019",
+    poster:"https://tse1.mm.bing.net/th?id=OIP.sorQgIDa3b_isrwfsHnqxAHaKX&pid=Api&P=0&w=131&h=183",
+     imdb:"*8.4/10",
+},
+
+{
+    name:"Ms Dhoni",
+    release:"2016",
+    poster:"https://tse1.mm.bing.net/th?id=OIP.Walffb6jadhuarI8xu3XuwHaHg&pid=Api&P=0&w=160&h=162",
+     imdb:"*7.4/10",
+},
+
+{
+    name:"Uri",
+    release:"2018",
+    poster:"https://tse4.mm.bing.net/th?id=OIP.gvl08oSg0K8OVBLkx76ahAHaEK&pid=Api&P=0&w=300&h=168",
+     imdb:"*8.2/10",
+},
+
+{
+    name:"SherShah",
+    release:"2021",
+    poster:"https://tse2.mm.bing.net/th?id=OIP.4ubGAZOMUwfT3tKX0DI34QHaEK&pid=Api&P=0&w=266&h=149",
+     imdb:"*8.5/10",
+},
+
+{
+    name:"Chhichhore",
+    release:"2019",
+    poster:"https://tse4.mm.bing.net/th?id=OIP._Lkxvg2REoqe398ZeZ2JHQHaE2&pid=Api&P=0&w=255&h=167",
+     imdb:"*8.3/10",
+},
+
+{
+    name:"Baahubali",
+    release:"2015",
+    poster:"https://tse2.mm.bing.net/th?id=OIP.w3zTfqEV1gTHmBklS1jYbgHaDt&pid=Api&P=0&w=319&h=159",
+     imdb:"*8.0/10",
+},
+
+]
+
+// localStorage.setItem("movies", JSON.stringify(obj))
+// let list=JSON.parse(localStorage.getItem("Movies"))
+
+// obj.forEach(function(elem){
+   //var box=document.createElement("div");
+//     box.setAttribute("class","ram")
+   
+//     var poster=document.createElement("img");
+//     poster.setAttribute("src",elem.poster)
+  
+//     var name=document.createElement("h3")
+//     name.innerText=elem.name;
+
+//     var release=document.createElement("h3")
+//     release.innerText=elem.release;
+   
+//     var imdb=document.createElement("h3")
+//     imdb.innerText=elem.imdb;
+
+// box.append(poster,name,release,imdb)
+// console.log(box)
+// })
+
+display(showmovies)
+
+function display(showmovies){
+document.querySelector("#movies").innerHTML=null;
+showmovies.map(function(el){
+
+     var box=document.createElement("div");
+
+
+   
+    var poster=document.createElement("img");
+  poster.src=el.poster;
+  
+    var name=document.createElement("h3")
+    name.innerText=el.name;
+
+    var release=document.createElement("h3")
+    release.innerText=el.release;
+   
+    var imdb=document.createElement("h3")
+    imdb.innerText=el.imdb;
+
+    box.append(poster,name,release,imdb)
+    document.querySelector("#movies").append(box)
+})
+
+}
+</script>
